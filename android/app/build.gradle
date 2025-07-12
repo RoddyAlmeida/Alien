@@ -80,7 +80,7 @@ android {
     namespace "com.cartasdelespacio"
     defaultConfig {
         applicationId "com.cartasdelespacio"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 24
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -116,4 +116,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    
+    // AR Core dependencies
+    implementation 'com.google.ar:core:1.40.0'
 }

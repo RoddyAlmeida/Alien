@@ -1,97 +1,168 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🚀 Cartas del Espacio - AR Game
 
-# Getting Started
+Un juego interactivo de decisiones con narrativa ramificada, donde el jugador se comunica con un alien atrapado en el espacio a través de cartas proyectadas en Realidad Aumentada.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 📖 Historia
 
-## Step 1: Start Metro
+Recibes una carta flotante en RA, escrita por un alien solitario llamado Zhur, atrapado en una estación abandonada. Zhur no sabe cómo llegó ahí y te escribe buscando ayuda para recuperar memoria y encontrar una salida. A medida que interactúas, Zhur empieza a contarte cosas extrañas... que conectan contigo. Tus decisiones afectan su destino y el desenlace.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🎮 Características
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **Narrativa ramificada**: 3 finales diferentes según tus decisiones
+- **Sistema de diálogos**: Interacción a través de cartas holográficas en AR
+- **Efectos visuales**: Cartas flotantes con efectos de luz suave
+- **Sistema de puntuación**: Tu relación con Zhur afecta el final
+- **Solo para Android**: Optimizado para dispositivos Android con ARCore
 
-```sh
-# Using npm
-npm start
+## 🛠️ Instalación
 
-# OR using Yarn
-yarn start
+### Prerrequisitos
+
+- Node.js (versión 18 o superior)
+- Android Studio
+- Un dispositivo Android con ARCore soportado
+- React Native CLI
+
+### Pasos de instalación
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone <tu-repositorio>
+   cd CartasDelEspacio
+   ```
+
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
+
+3. **Instalar ViroReact**
+   ```bash
+   npm install @viro-community/react-viro
+   ```
+
+4. **Configurar Android**
+   ```bash
+   npx react-native run-android
+   ```
+
+### Configuración de Android
+
+1. Asegúrate de que tu dispositivo Android tenga ARCore instalado
+2. Habilita el modo desarrollador en tu dispositivo
+3. Conecta tu dispositivo por USB y habilita la depuración USB
+
+## 🎯 Cómo jugar
+
+1. **Inicio**: Toca "Comenzar Aventura" en la pantalla principal
+2. **AR**: Apunta tu cámara hacia una superficie plana
+3. **Cartas**: Toca las cartas holográficas que aparecen flotando
+4. **Decisiones**: Selecciona una de las opciones de respuesta
+5. **Consecuencias**: Tus elecciones afectan la relación con Zhur
+6. **Final**: Alcanza uno de los 3 finales posibles
+
+## 📱 Controles
+
+- **Tocar carta**: Selecciona una carta para leer
+- **Tocar opción**: Selecciona tu respuesta
+- **Mover cámara**: Explora el entorno AR
+- **Volver**: Regresa al menú principal
+
+## 🎨 Estilo Visual
+
+- **Diseño minimalista**: Interfaz limpia y moderna
+- **Colores espaciales**: Azul cian (#00ffff) y negro (#0a0a0a)
+- **Efectos holográficos**: Cartas con transparencia y brillo
+- **Partículas ambientales**: Efectos de espacio profundo
+
+## 🏗️ Estructura del Proyecto
+
+```
+src/
+├── components/
+│   ├── ARScene.tsx          # Escena principal de AR
+│   ├── ARLetter.tsx         # Componente de carta holográfica
+│   └── GameManager.tsx      # Gestor del juego
+├── data/
+│   └── storyData.ts         # Datos de la narrativa ramificada
+└── assets/                  # Recursos gráficos
 ```
 
-## Step 2: Build and run your app
+## 🎭 Sistema de Narrativa
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+El juego utiliza un sistema de nodos de historia que permite:
 
-### Android
+- **3 tipos de consecuencias**: Ayudar, Ignorar, Engañar
+- **Sistema de puntuación**: -2 a +2 por decisión
+- **Finales múltiples**: Basados en la puntuación total
+- **Ramas dinámicas**: Las decisiones afectan el flujo de la historia
 
-```sh
-# Using npm
-npm run android
+## �� Desarrollo
 
-# OR using Yarn
-yarn android
+### Agregar nuevas cartas
+
+1. Edita `src/data/storyData.ts`
+2. Agrega nuevos nodos de historia
+3. Conecta las opciones con los nodos correspondientes
+
+### Modificar efectos visuales
+
+1. Edita `src/components/ARLetter.tsx`
+2. Modifica los materiales en `ViroMaterials.createMaterials`
+3. Ajusta las posiciones y escalas
+
+### Personalizar la interfaz
+
+1. Edita `src/components/GameManager.tsx`
+2. Modifica los estilos en `StyleSheet.create`
+3. Ajusta los colores y tipografías
+
+## 🚀 Despliegue
+
+### Generar APK de release
+
+```bash
+cd android
+./gradlew assembleRelease
 ```
 
-### iOS
+### Configurar firma
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+1. Genera un keystore para firma
+2. Configura `android/app/build.gradle`
+3. Agrega las credenciales de firma
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## 📄 Licencia
 
-```sh
-bundle install
-```
+Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
 
-Then, and every time you update your native dependencies, run:
+## 🤝 Contribuciones
 
-```sh
-bundle exec pod install
-```
+Las contribuciones son bienvenidas. Por favor:
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+1. Fork el proyecto
+2. Crea una rama para tu feature
+3. Commit tus cambios
+4. Push a la rama
+5. Abre un Pull Request
 
-```sh
-# Using npm
-npm run ios
+## 📞 Soporte
 
-# OR using Yarn
-yarn ios
-```
+Si tienes problemas o preguntas:
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+- Abre un issue en GitHub
+- Revisa la documentación de ViroReact
+- Consulta la documentación de ARCore
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🎯 Roadmap
 
-## Step 3: Modify your app
+- [ ] Más ramas de historia
+- [ ] Efectos de sonido espaciales
+- [ ] Modelos 3D de artefactos
+- [ ] Multiidioma
+- [ ] Modo offline
+- [ ] Estadísticas de juego
 
-Now that you have successfully run the app, let's make changes!
+---
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+**¡Disfruta explorando el espacio con Zhur!** 🛸✨
