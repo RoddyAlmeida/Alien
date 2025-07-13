@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-native/new-app-screen": "0.80.1",
     "@reactvision/react-viro": "^2.43.1",
+    "jest": "^30.0.4",
     "react": "19.1.0",
     "react-native": "0.80.1"
   },
