@@ -1,8 +1,25 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 import { ViroARSceneNavigator } from '@reactvision/react-viro';
 import ARScene from './ARScene';
 import { getStoryNode } from '../data/storyData';
+import { useGame } from '../context/GameContext';
+
+interface GameState {
+  currentNodeId: string;
+  relationshipScore: number;
+  choices: string[];
+  gameEnded: boolean;
+}
+
+// Componente de escena AR separado y estable que usa el contexto
+const ARSceneWrapper = (sceneProps: any) => {
+  return (
+    <ARScene 
+      {...sceneProps}
+    />
+  );
+};
 
 interface GameState {
   currentNodeId: string;
@@ -12,6 +29,7 @@ interface GameState {
 }
 
 const GameManager: React.FC = () => {
+  const gameContext = useGame();
   const [gameState, setGameState] = useState<GameState>({
     currentNodeId: 'start',
     relationshipScore: 0,
@@ -57,6 +75,17 @@ const GameManager: React.FC = () => {
     });
     setShowAR(false);
   }, []);
+
+  // Configurar el contexto cuando el componente se monte o cuando handleLetterResponse cambie
+  useEffect(() => {
+    gameContext.setGameData({
+      currentNodeId: gameState.currentNodeId,
+      relationshipScore: gameState.relationshipScore,
+      choices: gameState.choices,
+      gameEnded: gameState.gameEnded,
+      onLetterResponse: handleLetterResponse,
+    });
+  }, [gameContext, gameState, handleLetterResponse]);
 
   const getEndingMessage = useCallback(() => {
     if (gameState.relationshipScore >= 5) {
@@ -111,12 +140,7 @@ const GameManager: React.FC = () => {
   return (
     <ViroARSceneNavigator
       initialScene={{
-        scene: () => (
-          <ARScene 
-            onLetterResponse={handleLetterResponse} 
-            currentNodeId={gameState.currentNodeId}
-          />
-        ),
+        scene: ARSceneWrapper,
       }}
       style={styles.arContainer}
     />

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import {
   ViroARScene,
   ViroText,
@@ -6,16 +6,25 @@ import {
   ViroMaterials,
   ViroNode,
 } from '@reactvision/react-viro';
-import { StyleSheet } from 'react-native';
 import ARLetter from './ARLetter';
 import { getStoryNode } from '../data/storyData';
+import { useGame } from '../context/GameContext';
 
 interface ARSceneProps {
-  onLetterResponse: (letterId: string, response: string) => void;
-  currentNodeId?: string;
+  sceneNavigator?: any;
 }
 
-const ARScene: React.FC<ARSceneProps> = ({ onLetterResponse, currentNodeId = 'start' }) => {
+// Crear materiales una sola vez
+ViroMaterials.createMaterials({
+  particleMaterial: {
+    diffuseColor: '#ffffff',
+    lightingModel: 'Lambert',
+  },
+});
+
+const ARScene: React.FC<ARSceneProps> = (_props) => {
+  const gameContext = useGame();
+  const { onLetterResponse, currentNodeId } = gameContext;
   const currentStoryNode = getStoryNode(currentNodeId);
 
   // Generate particles once and memoize them
@@ -30,15 +39,6 @@ const ARScene: React.FC<ARSceneProps> = ({ onLetterResponse, currentNodeId = 'st
     }));
   }, []);
 
-  useEffect(() => {
-    ViroMaterials.createMaterials({
-      particleMaterial: {
-        diffuseColor: '#ffffff',
-        lightingModel: 'PBR',
-      },
-    });
-  }, []);
-
   if (!currentStoryNode) {
     return (
       <ViroARScene>
@@ -47,7 +47,9 @@ const ARScene: React.FC<ARSceneProps> = ({ onLetterResponse, currentNodeId = 'st
             text="Error: No se encontró la carta"
             scale={[0.5, 0.5, 0.5]}
             position={[0, 0, 0]}
-            style={styles.errorText}
+            fontFamily="Arial"
+            fontSize={16}
+            color="#ff0000"
           />
         </ViroNode>
       </ViroARScene>
@@ -84,14 +86,5 @@ const ARScene: React.FC<ARSceneProps> = ({ onLetterResponse, currentNodeId = 'st
     </ViroARScene>
   );
 };
-
-const styles = StyleSheet.create({
-  errorText: {
-    fontFamily: 'Arial',
-    fontSize: 16,
-    color: '#ff0000',
-    textAlignVertical: 'center',
-  },
-});
 
 export default ARScene; 
