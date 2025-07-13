@@ -4,7 +4,7 @@ import {
   ViroText,
   ViroBox,
   ViroMaterials,
-} from '@viro-community/react-viro';
+} from '@reactvision/react-viro';
 import { StyleSheet } from 'react-native';
 
 interface ARLetterProps {

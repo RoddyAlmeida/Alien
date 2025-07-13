@@ -5,7 +5,7 @@ import {
   ViroBox,
   ViroMaterials,
   ViroNode,
-} from '@viro-community/react-viro';
+} from '@reactvision/react-viro';
 import { StyleSheet } from 'react-native';
 import ARLetter from './ARLetter';
 import { getStoryNode } from '../data/storyData';

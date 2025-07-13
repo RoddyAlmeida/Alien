@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
-import { ViroARSceneNavigator } from '@viro-community/react-viro';
+import { ViroARSceneNavigator } from '@reactvision/react-viro';
 import ARScene from './ARScene';
 import { getStoryNode } from '../data/storyData';
 

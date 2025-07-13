@@ -10,11 +10,11 @@
     "test": "jest",
     "build:android": "cd android && ./gradlew assembleRelease",
     "clean:android": "cd android && ./gradlew clean",
-    "install:viro": "npm install @viro-community/react-viro"
+    "install:viro": "npm install @reactvision/react-viro"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.80.1",
-    "@viro-community/react-viro": "^2.41.1",
+    "@reactvision/react-viro": "^2.43.1",
     "react": "19.1.0",
     "react-native": "0.80.1"
   },
