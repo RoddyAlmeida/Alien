@@ -6,8 +6,8 @@
     "android": "react-native run-android",
     "lint": "eslint .",
     "start": "react-native start",
-    "build:android": "cd android && ./gradlew assembleRelease",
-    "clean:android": "cd android && ./gradlew clean"
+    "build": "cd android && gradlew assembleRelease",
+    "clean": "cd android && gradlew clean"
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.80.1",
