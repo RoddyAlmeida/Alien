@@ -1,4 +1,5 @@
 {
   "name": "CartasDelEspacio",
-  "displayName": "CartasDelEspacio"
+  "slug": "cartas-del-espacio",
+  "version": "0.0.1"
 }
